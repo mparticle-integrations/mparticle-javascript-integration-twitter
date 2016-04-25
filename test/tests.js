@@ -68,6 +68,15 @@ describe('Twitter Forwarder', function () {
             done();
         });
 
+        it('should not log event', function(done) {
+            mParticle.forwarder.process({
+                EventDataType : MessageType.SessionStart
+            });
+
+            window.twttr.should.have.property('trackPidCalled', false);
+            done();
+        });
+        
     });
     
 });
