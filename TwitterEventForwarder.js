@@ -13,7 +13,7 @@
 //  limitations under the License.
 
 (function (window) {
-    var name = 'TwitterEventForwarder',
+    var name = 'Twitter',
         MessageType = {
             PageView    : 3    
         };
