@@ -87,7 +87,7 @@
         
         function logEvent(event) {
             try {
-                twttr.conversion.trackPid(forwarderSettings.projectId);
+                twttr.conversion.trackPid(forwarderSettings.pixelId);
             } catch (e) {
                 return 'Can\'t log event on forwarder: ' + name + ': ' + e;
             }
