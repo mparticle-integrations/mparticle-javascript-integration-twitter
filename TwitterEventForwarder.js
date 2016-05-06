@@ -23,7 +23,8 @@
             isInitialized = false,
             forwarderSettings = null,
             reportingService = null,
-            isTesting = false;
+            isTesting = false,
+            eventQueue = [];
             
         self.name = name;
         
@@ -43,10 +44,19 @@
                         if(!w.twttr) {
                             d       = document;
                             s       = document.createElement('script');
-                            s.type  = 'text/javascript'
-                            s.async = true;
+                            s.type  = 'text/javascript';
                             s.src   = '//platform.twitter.com/oct.js';
-                            e      = d.getElementsByTagName('script')[0];
+                            s.onload = function () {
+                                if(twttr && eventQueue.length > 0) {
+                                    for (var i = 0; i < eventQueue.length; i++) {
+                                        processEvent(eventQueue[i]);
+                                    }
+
+                                    eventQueue = [];
+                                }    
+                            };
+                            
+                            e       = d.getElementsByTagName('script')[0];
                             
                             e.parentNode.insertBefore(s, e);
                         }    
@@ -67,6 +77,11 @@
             
             if(!isInitialized) {
                 return 'Can\'t send forwarder '+ name + ', not initialized';
+            }
+            
+            if(!window.twttr) { 
+                eventQueue.push(event);
+                return;
             }
             
             try {
