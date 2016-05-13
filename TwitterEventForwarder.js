@@ -101,11 +101,7 @@
         }
         
         function logEvent(event) {
-            try {
-                twttr.conversion.trackPid(forwarderSettings.pixelId);
-            } catch (e) {
-                return 'Can\'t log event on forwarder: ' + name + ': ' + e;
-            }
+            twttr.conversion.trackPid(forwarderSettings.pixelId);
         }
         
         this.init       = initForwarder;
