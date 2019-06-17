@@ -14,6 +14,7 @@
 
 (function (window) {
     var name = 'Twitter',
+        moduleId = 43,
         MessageType = {
             PageView    : 3    
         };
@@ -108,7 +109,18 @@
         this.process    = processEvent;       
     };
     
-    
+    function getId() {
+        return moduleId;
+    }
+
+    function register(config) {
+        if (config.kits) {
+            config.kits[name] = {
+                constructor: constructor
+            };
+        }
+    }
+
     if (!window ||
         !window.mParticle ||
         !window.mParticle.addForwarder) {
@@ -118,7 +130,11 @@
 
     window.mParticle.addForwarder({
         name       : name,
-        constructor: constructor
+        constructor: constructor,
+        getId: getId
     });
     
+    module.exports = {
+        register: register
+    };
 })(window);
