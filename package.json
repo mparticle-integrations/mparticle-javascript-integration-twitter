@@ -19,5 +19,9 @@
   "dependencies": {
     "@mparticle/web-sdk": "^2.9.4-rc.1"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "rollup --config rollup.config.js",
+    "watch": "rollup --config rollup.config.js -w"
+  }
 }
