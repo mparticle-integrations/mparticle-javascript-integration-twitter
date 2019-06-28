@@ -1,36 +1,53 @@
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 
-export default [{
-    input: 'src/TwitterEventForwarder.js',
-    output: {
-        file: 'TwitterEventForwarder.js',
-       format: 'umd',
-        exports: 'named',
-        name: 'mp-twitter-kit',
-        strict: false
+export default [
+    {
+        input: 'src/TwitterEventForwarder.js',
+        output: {
+            file: 'TwitterEventForwarder.js',
+            format: 'iife',
+            exports: 'named',
+            name: 'mpTwitterKit',
+            strict: false
+        },
+        plugins: [
+            resolve({
+                browser: true
+            }),
+            commonjs()
+        ]
     },
-    plugins: [
-        resolve({
-            browser: true
-        }),
-        commonjs()
-    ]
-},
-{
-    input: 'src/TwitterEventForwarder.js',
-    output: {
-        file: 'dist/TwitterEventForwarder.js',
-        format: 'umd',
-        exports: 'named',
-        name: 'mp-twitter-kit',
-        strict: false
+    {
+        input: 'src/TwitterEventForwarder.js',
+        output: {
+            file: 'dist/TwitterEventForwarder.js',
+            format: 'iife',
+            exports: 'named',
+            name: 'mpTwitterKit',
+            strict: false
+        },
+        plugins: [
+            resolve({
+                browser: true
+            }),
+            commonjs()
+        ]
     },
-    plugins: [
-        resolve({
-            browser: true
-        }),
-        commonjs()
-    ]
-}
-] 
+    {
+        input: 'src/TwitterEventForwarder.js',
+        output: {
+            file: 'npm/TwitterEventForwarder.js',
+            format: 'cjs',
+            exports: 'named',
+            name: 'mpTwitterKit',
+            strict: false
+        },
+        plugins: [
+            resolve({
+                browser: true
+            }),
+            commonjs()
+        ]
+    }
+]
