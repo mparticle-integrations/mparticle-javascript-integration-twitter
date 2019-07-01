@@ -21,7 +21,7 @@ export default [
     {
         input: 'src/TwitterEventForwarder.js',
         output: {
-            file: 'dist/TwitterEventForwarder.js',
+            file: 'dist/TwitterEventForwarder.iife.js',
             format: 'iife',
             exports: 'named',
             name: 'mpTwitterKit',
@@ -37,7 +37,7 @@ export default [
     {
         input: 'src/TwitterEventForwarder.js',
         output: {
-            file: 'npm/TwitterEventForwarder.js',
+            file: 'dist/TwitterEventForwarder.common.js',
             format: 'cjs',
             exports: 'named',
             name: 'mpTwitterKit',
