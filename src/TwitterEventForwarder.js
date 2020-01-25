@@ -12,12 +12,11 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-    var isobject = require('isobject');
-
     var name = 'Twitter',
         moduleId = 43,
         MessageType = {
-            PageView    : 3    
+            PageView    : 3,
+            PageEvent   : 4
         };
     
     var constructor = function () {
@@ -87,7 +86,7 @@
             }
             
             try {
-                if(event.EventDataType == MessageType.PageView) {
+                if (event.EventDataType === MessageType.PageView || event.EventDataType === MessageType.PageEvent) {
                     reportEvent = true;
                     logEvent(event);
                 } 
@@ -120,12 +119,12 @@
             return;
         }
 
-        if (!isobject(config)) {
+        if (!isObject(config)) {
             window.console.log('\'config\' must be an object. You passed in a ' + typeof config);
             return;
         }
 
-        if (isobject(config.kits)) {
+        if (isObject(config.kits)) {
             config.kits[name] = {
                 constructor: constructor
             };
@@ -144,6 +143,14 @@
             constructor: constructor,
             getId: getId
         });
+    }
+
+    function isObject(val) {
+        return (
+            val != null &&
+            typeof val === 'object' &&
+            Array.isArray(val) === false
+        );
     }
     
     module.exports = {

@@ -1,26 +1,5 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
-/*!
- * isobject <https://github.com/jonschlinkert/isobject>
- *
- * Copyright (c) 2014-2017, Jon Schlinkert.
- * Released under the MIT License.
- */
-
-function isObject(val) {
-  return val != null && typeof val === 'object' && Array.isArray(val) === false;
-}
-
-var isobject = /*#__PURE__*/Object.freeze({
-  'default': isObject
-});
-
-function getCjsExportFromNamespace (n) {
-	return n && n['default'] || n;
-}
-
-var isobject$1 = getCjsExportFromNamespace(isobject);
-
 //  Copyright 2015 mParticle, Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,12 +14,11 @@ var isobject$1 = getCjsExportFromNamespace(isobject);
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-    
-
     var name = 'Twitter',
         moduleId = 43,
         MessageType = {
-            PageView    : 3    
+            PageView    : 3,
+            PageEvent   : 4
         };
     
     var constructor = function () {
@@ -108,7 +86,7 @@ var isobject$1 = getCjsExportFromNamespace(isobject);
             }
             
             try {
-                if(event.EventDataType == MessageType.PageView) {
+                if (event.EventDataType === MessageType.PageView || event.EventDataType === MessageType.PageEvent) {
                     reportEvent = true;
                     logEvent(event);
                 } 
@@ -141,12 +119,12 @@ var isobject$1 = getCjsExportFromNamespace(isobject);
             return;
         }
 
-        if (!isobject$1(config)) {
+        if (!isObject(config)) {
             window.console.log('\'config\' must be an object. You passed in a ' + typeof config);
             return;
         }
 
-        if (isobject$1(config.kits)) {
+        if (isObject(config.kits)) {
             config.kits[name] = {
                 constructor: constructor
             };
@@ -165,6 +143,14 @@ var isobject$1 = getCjsExportFromNamespace(isobject);
             constructor: constructor,
             getId: getId
         });
+    }
+
+    function isObject(val) {
+        return (
+            val != null &&
+            typeof val === 'object' &&
+            Array.isArray(val) === false
+        );
     }
     
     var TwitterEventForwarder = {
