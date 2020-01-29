@@ -20,8 +20,7 @@
     "should": "7.1.0"
   },
   "dependencies": {
-    "isobject": "^4.0.0",
-    "@mparticle/web-sdk": "^2.9.4-rc.1"
+    "@mparticle/web-sdk": "^2.11.0"
   },
   "license": "Apache-2.0"
 }

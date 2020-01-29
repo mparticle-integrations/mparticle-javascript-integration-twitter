@@ -59,9 +59,18 @@ describe('Twitter Forwarder', function () {
 
     describe('Logging events', function() {
 
-        it('should log event', function(done) {
+        it('should log page view events', function(done) {
             mParticle.forwarder.process({
                 EventDataType : MessageType.PageView
+            });
+
+            window.twttr.should.have.property('trackPidCalled', true);
+            done();
+        });
+
+        it('should log custom events', function(done) {
+            mParticle.forwarder.process({
+                EventDataType : MessageType.PageEvent
             });
 
             window.twttr.should.have.property('trackPidCalled', true);
