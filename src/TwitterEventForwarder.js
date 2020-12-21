@@ -137,12 +137,14 @@
         window.console.log('Successfully registered ' + name + ' to your mParticle configuration');
     }
 
-    if (window && window.mParticle && window.mParticle.addForwarder) {
-        window.mParticle.addForwarder({
-            name: name,
-            constructor: constructor,
-            getId: getId
-        });
+    if (typeof window !== 'undefined') {
+        if (window && window.mParticle && window.mParticle.addForwarder) {
+            window.mParticle.addForwarder({
+                name: name,
+                constructor: constructor,
+                getId: getId
+            });
+        }
     }
 
     function isObject(val) {
