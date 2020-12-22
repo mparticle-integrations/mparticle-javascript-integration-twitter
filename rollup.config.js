@@ -5,22 +5,6 @@ export default [
     {
         input: 'src/TwitterEventForwarder.js',
         output: {
-            file: 'TwitterEventForwarder.js',
-            format: 'iife',
-            exports: 'named',
-            name: 'mpTwitterKit',
-            strict: false
-        },
-        plugins: [
-            resolve({
-                browser: true
-            }),
-            commonjs()
-        ]
-    },
-    {
-        input: 'src/TwitterEventForwarder.js',
-        output: {
             file: 'dist/TwitterEventForwarder.iife.js',
             format: 'iife',
             exports: 'named',
