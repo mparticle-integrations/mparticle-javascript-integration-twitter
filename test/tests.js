@@ -48,7 +48,7 @@ describe('Twitter Forwarder', function () {
     }
 
     before(function () {
-        mParticle.forwarder.init({
+        window.mParticle.forwarder.init({
             projectId: 'nupfn'
         }, reportService.cb, true);
     });
@@ -59,9 +59,9 @@ describe('Twitter Forwarder', function () {
 
     describe('Logging events', function() {
 
-        it('should log page view events', function(done) {
-            mParticle.forwarder.process({
-                EventDataType : MessageType.PageView
+        it('should log event', function(done) {
+            window.mParticle.forwarder.process({
+                EventDataType: MessageType.PageView,
             });
 
             window.twttr.should.have.property('trackPidCalled', true);
