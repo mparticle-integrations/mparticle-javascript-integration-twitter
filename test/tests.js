@@ -47,21 +47,24 @@ describe('Twitter Forwarder', function () {
         }
     }
 
-    before(function () {
-        mParticle.forwarder.init({
-            projectId: 'nupfn'
-        }, reportService.cb, true);
+    before(function() {
+        mParticle.forwarder.init(
+            {
+                projectId: 'nupfn',
+            },
+            reportService.cb,
+            true
+        );
     });
 
-    beforeEach(function () {
+    beforeEach(function() {
         window.twttr = new MPMock();
     });
 
     describe('Logging events', function() {
-
         it('should log page view events', function(done) {
             mParticle.forwarder.process({
-                EventDataType : MessageType.PageView
+                EventDataType: MessageType.PageView,
             });
 
             window.twttr.should.have.property('trackPidCalled', true);
@@ -70,7 +73,7 @@ describe('Twitter Forwarder', function () {
 
         it('should log custom events', function(done) {
             mParticle.forwarder.process({
-                EventDataType : MessageType.PageEvent
+                EventDataType: MessageType.PageEvent,
             });
 
             window.twttr.should.have.property('trackPidCalled', true);
@@ -79,13 +82,12 @@ describe('Twitter Forwarder', function () {
 
         it('should not log event', function(done) {
             mParticle.forwarder.process({
-                EventDataType : MessageType.SessionStart
+                EventDataType: MessageType.SessionStart,
             });
 
             window.twttr.should.have.property('trackPidCalled', false);
             done();
         });
-        
     });
     
 });
